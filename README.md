@@ -2,7 +2,7 @@
 
 `BUILD STATUS HERE`
 
-TypeScript HTML Input System inspired by [contro].
+:video_game: Input System inspired by [contro].
 
 ## Inspirations
 
