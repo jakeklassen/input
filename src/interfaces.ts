@@ -5,6 +5,7 @@ export interface IGamepadButton {
 export enum GamepadMappingType {
   Standard = 'standard',
   Unknown = '',
+  '' = '',
 }
 
 /**
@@ -32,7 +33,7 @@ export interface IGamepad {
   /**
    * [mapping attribute](https://w3c.github.io/gamepad/#dom-gamepad-mapping)
    */
-  readonly mapping: GamepadMappingType;
+  readonly mapping: string;
 
   /**
    * [axes attribute](https://w3c.github.io/gamepad/#dom-gamepad-axes)
@@ -40,10 +41,21 @@ export interface IGamepad {
    * Array of values for all axes of the gamepad. Axis values are lineraly normalized to the range
    * [-1.0 .. 1.0].
    */
-  readonly axes: number[];
+  readonly axes: ReadonlyArray<number>;
 
   /**
    * Array of button states for all buttons of the gamepad.
    */
-  readonly buttons: IGamepadButton[];
+  readonly buttons: ReadonlyArray<IGamepadButton>;
+}
+
+export interface IControl<T> {
+  label: string;
+
+  fromGamepad?: boolean;
+
+  query(): T;
+
+  /* Required for utility function in `or.spec.ts` to work. */
+  [key: string]: any;
 }
